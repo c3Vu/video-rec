@@ -1,0 +1,27 @@
+<nz-spin [nzSpinning]="loading">
+  <h2 nz-typography>{{detail.title}}</h2>
+  <div class="content" *ngIf="!loading">
+    <div class="left">
+      <img
+        nz-image
+        width="300px"
+        [nzSrc]="detail.image || ''"
+        alt=""
+      />
+    </div>
+    <div class="right">
+      <p nz-typography>Directors: <span>{{(detail.director || []).join(', ')}}</span></p>
+      <p nz-typography>Actors: <span>{{(detail.stars || []).join(', ')}}</span></p>
+      <p nz-typography>Genre: <span>{{(detail.genre || []).join(' | ')}}</span></p>
+      <p nz-typography>Length: <span>{{detail.length}} Minutes</span></p>
+      <p nz-typography>Language: <span>{{(detail.language || []).join(', ')}}</span></p>
+      <p nz-typography>Date: <span>{{detail.date}}</span></p>
+      <p nz-typography>
+        <button nz-button (click)="handleClick()">
+          {{!liked ? 'Like' : 'Liked'}}
+          <i nz-icon nzType="like" [nzTheme]="liked ? 'fill' : 'outline'"></i>
+        </button>
+      </p>
+    </div>
+  </div>
+</nz-spin>

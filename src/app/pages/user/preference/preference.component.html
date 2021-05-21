@@ -1,0 +1,32 @@
+<form nz-form class="card" [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <h3 nz-typography class="title">Preferences</h3>
+  <p nz-typography>Genre: </p>
+  <nz-form-item class="item">
+    <nz-form-control>
+      <nz-input-group>
+        <input formControlName="genre" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <p nz-typography>Actor: </p>
+  <nz-form-item class="item">
+    <nz-form-control>
+      <nz-input-group>
+        <input formControlName="actor" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <p nz-typography>Director: </p>
+  <nz-form-item class="item">
+    <nz-form-control>
+      <nz-input-group>
+        <input formControlName="director" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary" class="login">Save Changes</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

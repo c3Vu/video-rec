@@ -1,0 +1,32 @@
+<nz-spin [nzSpinning]="loading">
+  <div class="wrapper">
+    <form nz-form class="card" [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item class="item">
+        <nz-form-control>
+          <nz-select formControlName="searchby" nzAllowClear>
+            <nz-option nzValue="title" nzLabel="Title"></nz-option>
+            <nz-option nzValue="director" nzLabel="Director"></nz-option>
+            <nz-option nzValue="stars" nzLabel="Actor"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="item">
+        <nz-form-control>
+          <input formControlName="value" nz-input nzAllowClear />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid" class="search">Search</button>
+      </nz-form-control>
+    </form>
+    <div class="videos">
+      <app-video *ngFor="let video of videos" class="video" [video]="video" [liked]="video.liked || false"></app-video>
+    </div>
+    <div>
+      <button nz-button class="bottom"  (click)="handleClick()">
+        <i nz-icon nzType="down"></i>
+      </button>
+    </div>
+  </div>
+
+</nz-spin>

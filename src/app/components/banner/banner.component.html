@@ -1,0 +1,30 @@
+<div [class.current]="current === '/videos/explore'">
+  <button nz-button>
+    <a [routerLink]="['/', 'videos', 'explore']">
+      Look Around
+    </a>
+</button>
+</div>
+<div [class.current]="current === '/videos/my'">
+  <button class="btn" nz-button>
+    <a [routerLink]="['/', 'videos', 'my']">My Space</a>
+  </button>
+</div>
+
+<!--<button *ngIf="!user.username; else person" class="last" nz-button>-->
+<!--  <a [routerLink]="['/', 'user', 'login']">Login</a>-->
+<!--  &nbsp;-->
+<!--  <span [style]="{color: 'black'}">/</span>-->
+<!--  &nbsp;-->
+<!--  <a [routerLink]="['/','user','register']">Register</a>-->
+<!--</button>-->
+<!--<ng-template #person>-->
+<!--  <div class="last">-->
+<!--    <button nz-button>-->
+<!--      <a [routerLink]="['/', 'user', 'settings']">Settings</a>-->
+<!--    </button>-->
+<!--    <button nz-button (click)="logout()">-->
+<!--      Log out-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</ng-template>-->

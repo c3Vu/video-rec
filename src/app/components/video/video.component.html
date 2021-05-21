@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <img
+    nz-image
+    width="150px"
+    [nzSrc]="video.image || ''"
+    alt=""
+  />
+</div>
+<div class="right">
+  <h3 nz-typography nzEllipsis nzEllipsisRows="3">
+    <a
+      [routerLink]="['/', 'videos', 'detail']"
+      [queryParams]="{id: video.id}"
+    >{{video.title}}</a>
+  </h3>
+  <p>{{video.date}}</p>
+  <p>Director: {{(video.director || []).join(', ')}}</p>
+  <p style="flex: 1">Genre: {{(video.genre || []).join(', ')}}</p>
+  <div *ngIf="showLike" style="align-self: flex-end">
+    <button nz-button (click)="handleClick()">
+      {{!currentLiked ? 'Like' : 'Liked'}}
+      <i nz-icon nzType="like" [nzTheme]="currentLiked ? 'fill' : 'outline'"></i>
+    </button>
+  </div>
+</div>

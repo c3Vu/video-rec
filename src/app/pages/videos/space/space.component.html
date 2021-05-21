@@ -1,0 +1,12 @@
+<div class="col">
+  <h2 nz-typography>Likes</h2>
+  <app-video *ngFor="let video of likes" [video]="video" [showLike]="false"></app-video>
+</div>
+<div class="col">
+  <h2 nz-typography>History</h2>
+  <app-video *ngFor="let video of history" [video]="video" [showLike]="false"></app-video>
+</div>
+<div class="col">
+  <h2 nz-typography>Recommend For You</h2>
+  <app-video *ngFor="let video of recommend" [video]="video" [showLike]="false"></app-video>
+</div>
