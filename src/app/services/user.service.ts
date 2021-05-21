@@ -2,29 +2,39 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Preference, User} from '../interfaces/user.interface';
+import {AppConfigService} from './app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  userName: string = localStorage.getItem('username') || 'test-user';
-  userStatus$ = new Subject<User>();
+  user: User = {};
+  user$ = new Subject<User>();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private appConfigService: AppConfigService
+  ) {
+    this.user$.subscribe(user => {
+      this.user = user;
+      localStorage.setItem('user', JSON.stringify(user));
+    });
+    this.user$.next(JSON.parse(localStorage.getItem('user') || '{}'));
   }
-  init(): void {
-    this.userStatus$.next({username: this.userName});
+
+  register(user: User): Observable<any> {
+    return this.http.post(this.appConfigService.baseUrl + '/users/register', {
+      ...user
+    });
   }
-  login(): void {
-    this.userName = 'test-user';
-    localStorage.setItem('username', 'test-user');
-    this.userStatus$.next({username: 'test-user'});
+  login(user: User): Observable<any> {
+    return this.http.post(this.appConfigService.baseUrl + '/users/login', {
+      ...user
+    });
   }
   logout(): void {
     setTimeout(() => {
-      this.userName = '';
-      this.userStatus$.next({});
-      localStorage.setItem('username', '');
+      this.user$.next({});
     }, 500);
   }
   editPassword(password: string): void {

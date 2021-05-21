@@ -16,7 +16,8 @@
       <p nz-typography>Length: <span>{{detail.length}} Minutes</span></p>
       <p nz-typography>Language: <span>{{(detail.language || []).join(', ')}}</span></p>
       <p nz-typography>Date: <span>{{detail.date}}</span></p>
-      <p nz-typography>
+      <p nz-typography>Introduction: <span>{{detail.intro}}</span></p>
+      <p nz-typography *ngIf="userService.user.username">
         <button nz-button (click)="handleClick()">
           {{!liked ? 'Like' : 'Liked'}}
           <i nz-icon nzType="like" [nzTheme]="liked ? 'fill' : 'outline'"></i>

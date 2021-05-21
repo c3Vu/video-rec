@@ -16,7 +16,7 @@ export class VideoComponent implements OnInit, OnChanges {
 
   constructor(
     private videosService: VideosService,
-    private userService: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class VideoComponent implements OnInit, OnChanges {
   }
 
   handleClick(): void {
-    this.videosService.postLikeVideo(this.userService.userName, (this.video?.id || '').toString()).subscribe(
+    this.videosService.postLikeVideo((this.video?.id || '').toString()).subscribe(
       () => this.currentLiked = true
     );
   }

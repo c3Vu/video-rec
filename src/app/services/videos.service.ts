@@ -43,17 +43,17 @@ export class VideosService {
     return this.http.get(this.appConfigService.baseUrl + '/movie/' + id);
   }
 
-  getLikeVideo(uid: string): Observable<any> {
+  getLikeVideo(): Observable<any> {
     return this.http.get(this.appConfigService.baseUrl + '/users/history', {
       params: {
-        uid,
+        uid: this.userService.user.username || '',
         behavior: this.appConfigService.behaviors.like
       }
     });
   }
 
-  getLikeVideoId(uid: string): void {
-    this.getLikeVideo(uid).pipe(map((list) =>
+  getLikeVideoId(): void {
+    this.getLikeVideo().pipe(map((list) =>
         (list as Array<Video>)
           .filter(ele => ele.id !== undefined)
           .map(ele => ele.id || 0)))
@@ -62,32 +62,36 @@ export class VideosService {
       );
   }
 
-  postLikeVideo(uid: string, mid: string): Observable<any> {
+  postLikeVideo(mid: string): Observable<any> {
     return this.http.post(this.appConfigService.baseUrl + '/users/history', {
       behavior: this.appConfigService.behaviors.like,
-      uid,
+      uid: this.userService.user.username,
       mid
     }, { });
   }
 
-  getHistoryVideo(uid: string): Observable<any> {
+  getHistoryVideo(): Observable<any> {
     return this.http.get(this.appConfigService.baseUrl + '/users/history', {
       params: {
-        uid,
+        uid: this.userService.user.username || '',
         behavior: this.appConfigService.behaviors.enter
       }
     });
   }
 
-  postHistoryVideo(uid: string, mid: string): Observable<any> {
+  postHistoryVideo(mid: string): Observable<any> {
     return this.http.post(this.appConfigService.baseUrl + '/users/history', {
       behavior: this.appConfigService.behaviors.enter,
-      uid,
+      uid: this.userService.user.username,
       mid
     }, { });
   }
 
-  getRecommendVideo(uid: string): Observable<any> {
-    return this.http.get(this.appConfigService.baseUrl + '/recommend/' + uid);
+  getRecommendVideo(): Observable<any> {
+    return this.http.get(this.appConfigService.baseUrl + '/recommend/' + this.userService.user.username, {
+      params: {
+        username: this.userService.user.username || ''
+      }
+    });
   }
 }

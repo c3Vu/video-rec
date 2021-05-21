@@ -1,10 +1,26 @@
 <form nz-form class="card" [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <h3 nz-typography class="title">Register</h3>
-  <p nz-typography><span style="color: red">*&nbsp;</span>UserName</p>
+  <p nz-typography><span style="color: red">*&nbsp;</span>Username</p>
   <nz-form-item class="item">
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">
-        <input formControlName="userName" nz-input />
+        <input formControlName="username" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <p nz-typography>Nickname</p>
+  <nz-form-item class="item">
+    <nz-form-control>
+      <nz-input-group nzPrefixIcon="user">
+        <input formControlName="nickname" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <p nz-typography>Email</p>
+  <nz-form-item class="item">
+    <nz-form-control>
+      <nz-input-group nzPrefixIcon="mail">
+        <input formControlName="email" nz-input />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -32,9 +48,12 @@
       </ng-template>
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item>
-    <nz-form-control>
-      <button nz-button nzType="primary" [disabled]="!validateForm.valid" class="login">Register</button>
-    </nz-form-control>
-  </nz-form-item>
+  <div style="color: red" *ngIf="errorMsg">{{errorMsg}}</div>
+  <nz-spin [nzSpinning]="loading">
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid" class="login">Register and Login Now</button>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-spin>
 </form>

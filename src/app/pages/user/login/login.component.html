@@ -1,14 +1,14 @@
 <form nz-form class="card" [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <h3 nz-typography class="title">Login</h3>
-  <p nz-typography>UserName</p>
+  <p nz-typography>Username:</p>
   <nz-form-item class="item">
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">
-        <input formControlName="userName" nz-input />
+        <input formControlName="username" nz-input />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-  <p nz-typography>Password</p>
+  <p nz-typography>Password:</p>
   <nz-form-item class="item">
     <nz-form-control nzErrorTip="Please input your Password!">
       <nz-input-group nzPrefixIcon="lock">
@@ -16,10 +16,13 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-  <p nz-typography>Forgot your password? or <a [routerLink]="['/', 'user', 'register']">Register</a></p>
-  <nz-form-item>
-    <nz-form-control>
-      <button nz-button nzType="primary" [disabled]="!validateForm.valid" class="login">Log in</button>
-    </nz-form-control>
-  </nz-form-item>
+  <p *ngIf="errorMsg" style="color:red;" nz-typography>{{errorMsg}}</p>
+  <p nz-typography>Haven't <a [routerLink]="['/', 'user', 'register']">Registered</a> yet?</p>
+  <nz-spin [nzSpinning]="loading">
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid" class="login">Log in</button>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-spin>
 </form>

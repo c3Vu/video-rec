@@ -14,6 +14,7 @@ import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {BannerComponent} from './components/banner/banner.component';
 import {NzButtonModule} from 'ng-zorro-antd/button';
+import {NzIconModule} from 'ng-zorro-antd/icon';
 
 registerLocaleData(en);
 
@@ -22,17 +23,18 @@ registerLocaleData(en);
       AppComponent,
       BannerComponent
     ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    BrowserAnimationsModule,
-    NzFormModule,
-    NzLayoutModule,
-    NzButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+        BrowserAnimationsModule,
+        NzFormModule,
+        NzLayoutModule,
+        NzButtonModule,
+        NzIconModule
+    ],
     providers: [{provide: NZ_I18N, useValue: en_US}],
     bootstrap: [AppComponent]
 })

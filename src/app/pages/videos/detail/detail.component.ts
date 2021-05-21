@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private videoService: VideosService,
-    private userService: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -26,21 +26,21 @@ export class DetailComponent implements OnInit {
       filter(o => o.id),
       map(o => o.id)
     ).subscribe(id => {
-      this.videoService.postHistoryVideo(this.userService.userName, id).subscribe();
+      this.videoService.postHistoryVideo(id).subscribe();
       this.videoService.getVideoDetail(id).subscribe(o => {
         this.detail = o;
         this.loading = false;
         this.videoService.likes$.subscribe((ids) => {
           this.liked = ids.indexOf(this.detail.id || 0) >= 0;
         });
-        this.videoService.getLikeVideoId(this.userService.userName);
+        this.videoService.getLikeVideoId();
       });
 
     });
   }
 
   handleClick(): void {
-    this.videoService.postLikeVideo(this.userService.userName, (this.detail.id || '').toString()).subscribe(
+    this.videoService.postLikeVideo((this.detail.id || '').toString()).subscribe(
       () => this.liked = true
     );
   }

@@ -16,7 +16,7 @@
   <p>{{video.date}}</p>
   <p>Director: {{(video.director || []).join(', ')}}</p>
   <p style="flex: 1">Genre: {{(video.genre || []).join(', ')}}</p>
-  <div *ngIf="showLike" style="align-self: flex-end">
+  <div *ngIf="showLike && userService.user.username" style="align-self: flex-end">
     <button nz-button (click)="handleClick()">
       {{!currentLiked ? 'Like' : 'Liked'}}
       <i nz-icon nzType="like" [nzTheme]="currentLiked ? 'fill' : 'outline'"></i>

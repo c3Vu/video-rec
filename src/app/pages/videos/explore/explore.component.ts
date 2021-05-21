@@ -2,9 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {VideosService} from '../../../services/videos.service';
 import {Video} from '../../../interfaces/videos.interface';
 import {AppConfigService} from '../../../services/app-config.service';
-import {UserService} from '../../../services/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {map} from 'rxjs/operators';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-explore',
@@ -39,7 +37,6 @@ export class ExploreComponent implements OnInit {
   constructor(
     private videosService: VideosService,
     private appConfigService: AppConfigService,
-    private userService: UserService,
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
   ) { }
@@ -49,7 +46,6 @@ export class ExploreComponent implements OnInit {
       searchby: [null],
       value: [null],
     });
-    console.log(this.userService.userName);
     this.loading = true;
     this.videosService.getVideosDefault(this.limit.toString(), this.offset.toString()).subscribe((o) => {
       this.videos = o;
@@ -62,7 +58,7 @@ export class ExploreComponent implements OnInit {
           });
           this.cdr.markForCheck();
         });
-      this.videosService.getLikeVideoId(this.userService.userName);
+      this.videosService.getLikeVideoId();
       this.loading = false;
     });
   }

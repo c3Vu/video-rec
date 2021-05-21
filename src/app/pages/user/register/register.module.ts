@@ -10,21 +10,23 @@ import {NzFormModule} from 'ng-zorro-antd/form';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzToolTipModule} from 'ng-zorro-antd/tooltip';
 import {CommonModule} from '@angular/common';
+import {NzSpinModule} from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [RegisterComponent],
-  imports: [
-    CommonModule,
-    RegisterRoutingModule,
-    NzLayoutModule,
-    NzButtonModule,
-    NzTypographyModule,
-    NzInputModule,
-    NzIconModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NzToolTipModule
-  ],
+    imports: [
+        CommonModule,
+        RegisterRoutingModule,
+        NzLayoutModule,
+        NzButtonModule,
+        NzTypographyModule,
+        NzInputModule,
+        NzIconModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzToolTipModule,
+        NzSpinModule
+    ],
 })
 export class RegisterModule {}

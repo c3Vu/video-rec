@@ -25,11 +25,12 @@ export class BannerComponent implements OnInit {
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   logout(): void {
     this.userService.logout();
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
@@ -40,12 +41,11 @@ export class BannerComponent implements OnInit {
       this.current = url;
       this.cdr.markForCheck();
     });
-    this.userService.userStatus$.subscribe(o => {
+    this.userService.user$.subscribe(o => {
       this.user = o;
       this.cdr.markForCheck();
       console.log(o);
     });
-    this.userService.init();
   }
 
 }
